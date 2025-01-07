@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout do código no repositório
+      # Checkout do Código
       - name: Checkout do Código
         uses: actions/checkout@v3
 
@@ -21,11 +21,16 @@ jobs:
       - name: Configurar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 22
+          cache: 'npm'
 
       # Instalar Dependências
       - name: Instalar Dependências
         run: npm install
+
+      # Garantir Permissões (se necessário)
+      - name: Garantir Permissões
+        run: chmod -R 777 .
 
       # Executar Testes
       - name: Executar Testes
