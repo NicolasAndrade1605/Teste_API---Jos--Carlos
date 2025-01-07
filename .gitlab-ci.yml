@@ -1,22 +1,18 @@
 stages:
-  - install
+  - clone
   - test
 
-install_dependencies:
-  image: node:22
-  stage: install
+clone_repository:
+  stage: clone
   script:
+    - git clone https://github.com/NicolasAndrade1605/Teste_API---Jos--Carlos.git .
     - npm install
-  artifacts:
-    paths:
-      - node_modules/
 
 run_tests:
-  image: node:22
   stage: test
   script:
     - npm test
   artifacts:
     paths:
       - reports/
-    when: always
+
