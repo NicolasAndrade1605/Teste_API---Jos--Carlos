@@ -33,13 +33,12 @@ describe('Testes de API - ServeRest', function () {
 
     // 2. Criar Novo Usuário
     it('Deve criar um novo usuário', async function () {
+        const uniqueEmail = `testeqa${Date.now()}@qa.com`;
         const response = await axios.post(`${baseUrl}usuarios`, {
-            nome: 'José Carlos',
-            email: 'jose.carlos@teste.com',
-            password: '123senha',
-            administrador: 'false'
-        }, {
-            headers: { Authorization: authToken }
+            nome: 'Teste QA',
+            email: uniqueEmail,
+            password: '123456',
+            administrador: 'true'
         });
 
         expect(response.status).to.equal(201);

@@ -1,0 +1,217 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 6,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-07T18:42:02.374Z",
+    "end": "2025-01-07T18:42:04.177Z",
+    "duration": 1803,
+    "testsRegistered": 6,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "79cd7655-e684-41ee-bb94-de0b34f12ca1",
+      "title": "",
+      "fullFile": "C:\\Users\\nicol\\Documents\\Nicolas\\entrevista tecnica\\Teste_API\\api-tests.js",
+      "file": "\\api-tests.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "f5d5e32f-1e6e-4d69-81e2-4508b07dd63c",
+          "title": "Testes de API - ServeRest",
+          "fullFile": "C:\\Users\\nicol\\Documents\\Nicolas\\entrevista tecnica\\Teste_API\\api-tests.js",
+          "file": "\\api-tests.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Testes de API - ServeRest\"",
+              "fullTitle": "Testes de API - ServeRest \"before all\" hook in \"Testes de API - ServeRest\"",
+              "timedOut": false,
+              "duration": 490,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await axios.post(`${baseUrl}login`, {\n    email: 'teste@teste.com',\n    password: '123senha'\n});\nauthToken = response.data.authorization;\nexpect(response.status).to.equal(200);\nexpect(authToken).to.be.a('string');\nconsole.log('Token JWT obtido:', authToken);",
+              "err": {},
+              "uuid": "b3ee4cf8-5523-4f21-be37-e79198d1c325",
+              "parentUUID": "f5d5e32f-1e6e-4d69-81e2-4508b07dd63c",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Deve retornar a lista de usuários",
+              "fullTitle": "Testes de API - ServeRest Deve retornar a lista de usuários",
+              "timedOut": false,
+              "duration": 486,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await axios.get(`${baseUrl}usuarios`, {\n    headers: { Authorization: authToken }\n});\nexpect(response.status).to.equal(200);\nexpect(response.data).to.have.property('quantidade');\nconsole.log('Lista de usuários retornada com sucesso.');",
+              "err": {},
+              "uuid": "5ddde4e6-e59c-4a20-84aa-b6e351a0dbc4",
+              "parentUUID": "f5d5e32f-1e6e-4d69-81e2-4508b07dd63c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve criar um novo usuário",
+              "fullTitle": "Testes de API - ServeRest Deve criar um novo usuário",
+              "timedOut": false,
+              "duration": 165,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const uniqueEmail = `testeqa${Date.now()}@qa.com`;\nconst response = await axios.post(`${baseUrl}usuarios`, {\n    nome: 'Teste QA',\n    email: uniqueEmail,\n    password: '123456',\n    administrador: 'true'\n});\nexpect(response.status).to.equal(201);\nexpect(response.data.message).to.equal('Cadastro realizado com sucesso');\nuserId = response.data._id;\nconsole.log('Usuário criado com sucesso. ID:', userId);",
+              "err": {},
+              "uuid": "f12966b0-85bd-4bf5-9f3f-93015b8a8bf9",
+              "parentUUID": "f5d5e32f-1e6e-4d69-81e2-4508b07dd63c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve buscar usuário pelo ID",
+              "fullTitle": "Testes de API - ServeRest Deve buscar usuário pelo ID",
+              "timedOut": false,
+              "duration": 176,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await axios.get(`${baseUrl}usuarios/${userId}`, {\n    headers: { Authorization: authToken }\n});\nexpect(response.status).to.equal(200);\nexpect(response.data).to.have.property('_id', userId);\nconsole.log('Usuário retornado com sucesso:', response.data);",
+              "err": {},
+              "uuid": "5cb6a9b1-0b1a-4a5e-83a2-ff8769652a03",
+              "parentUUID": "f5d5e32f-1e6e-4d69-81e2-4508b07dd63c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve atualizar os dados do usuário pelo ID",
+              "fullTitle": "Testes de API - ServeRest Deve atualizar os dados do usuário pelo ID",
+              "timedOut": false,
+              "duration": 156,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await axios.put(`${baseUrl}usuarios/${userId}`, {\n    nome: 'José Carlos Atualizado',\n    email: 'jose.carlos.atualizado@teste.com',\n    password: 'novaSenha123',\n    administrador: 'true'\n}, {\n    headers: { Authorization: authToken }\n});\nexpect(response.status).to.equal(200);\nexpect(response.data.message).to.equal('Registro alterado com sucesso');\nconsole.log('Usuário atualizado com sucesso.');",
+              "err": {},
+              "uuid": "7119f54f-55d9-4bcc-8b0d-00dd3e404560",
+              "parentUUID": "f5d5e32f-1e6e-4d69-81e2-4508b07dd63c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve excluir o usuário pelo ID",
+              "fullTitle": "Testes de API - ServeRest Deve excluir o usuário pelo ID",
+              "timedOut": false,
+              "duration": 156,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const response = await axios.delete(`${baseUrl}usuarios/${userId}`, {\n    headers: { Authorization: authToken }\n});\nexpect(response.status).to.equal(200);\nexpect(response.data.message).to.equal('Registro excluído com sucesso');\nconsole.log('Usuário excluído com sucesso.');",
+              "err": {},
+              "uuid": "e031e38c-d073-4708-ac50-ec0377f64f71",
+              "parentUUID": "f5d5e32f-1e6e-4d69-81e2-4508b07dd63c",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deve retornar erro ao criar um usuário com email já existente",
+              "fullTitle": "Testes de API - ServeRest Deve retornar erro ao criar um usuário com email já existente",
+              "timedOut": false,
+              "duration": 155,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "try {\n    await axios.post(`${baseUrl}usuarios`, {\n        nome: 'José Carlos',\n        email: 'jose.carlos@teste.com',\n        password: '123senha',\n        administrador: 'false'\n    }, {\n        headers: { Authorization: authToken }\n    });\n} catch (error) {\n    expect(error.response.status).to.equal(400);\n    expect(error.response.data.message).to.equal('Este email já está sendo usado');\n    console.log('Erro validado com sucesso ao tentar criar um usuário com email duplicado.');\n}",
+              "err": {},
+              "uuid": "6f9cbe9c-3f95-4182-921b-881ad0fe4d98",
+              "parentUUID": "f5d5e32f-1e6e-4d69-81e2-4508b07dd63c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5ddde4e6-e59c-4a20-84aa-b6e351a0dbc4",
+            "f12966b0-85bd-4bf5-9f3f-93015b8a8bf9",
+            "5cb6a9b1-0b1a-4a5e-83a2-ff8769652a03",
+            "7119f54f-55d9-4bcc-8b0d-00dd3e404560",
+            "e031e38c-d073-4708-ac50-ec0377f64f71",
+            "6f9cbe9c-3f95-4182-921b-881ad0fe4d98"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1294,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 5000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "report.html",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports",
+        "reportFilename": "report.html"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
