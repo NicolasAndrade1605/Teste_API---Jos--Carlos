@@ -31,20 +31,9 @@ jobs:
       - name: Executar Testes
         run: npm test
 
-        # Gerar Relatório de Testes
-      - name: Gerar Relatório de Testes
-        run: mkdir -p reports && npm test
-    
-
-        # Upload do Relatório de Testes
+      # Upload do Relatório de Testes
       - name: Upload do Relatório de Testes
-        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: relatorio-de-testes
           path: reports/report.html
-
-
-      - name: Garantir Permissões
-        run: chmod -R 777 .
-        
