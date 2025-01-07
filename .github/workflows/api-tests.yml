@@ -1,0 +1,47 @@
+name: Teste de API
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  api_tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout do código no repositório
+      - name: Checkout do Código
+        uses: actions/checkout@v3
+
+      # Configurar Node.js
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      # Instalar Dependências
+      - name: Instalar Dependências
+        run: npm install
+
+      # Executar Testes
+      - name: Executar Testes
+        run: npm test
+
+        # Gerar Relatório de Testes
+      - name: Gerar Relatório de Testes
+        if: always()
+        run: |
+          mkdir -p reports
+          npx mocha api-tests.js --reporter mochawesome --reporter-options reportDir=reports,reportFilename=report.html
+
+        # Upload do Relatório de Testes
+      - name: Upload do Relatório de Testes
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: relatorio-de-testes
+          path: reports/report.html
