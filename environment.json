@@ -1,0 +1,27 @@
+{
+	"id": "56ed9253-d508-4abc-85ff-968bd05e2618",
+	"name": "serverest JWT",
+	"values": [
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://serverest.dev/",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "request_count",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-01-07T16:16:51.632Z",
+	"_postman_exported_using": "Postman/11.23.3"
+}

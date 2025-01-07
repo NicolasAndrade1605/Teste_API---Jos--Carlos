@@ -1,0 +1,19 @@
+{
+  "name": "teste_api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "chai": "^5.1.2",
+    "mocha": "^11.0.1",
+    "newman": "^6.2.1"
+  }
+}
