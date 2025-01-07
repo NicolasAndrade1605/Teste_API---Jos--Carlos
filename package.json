@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  "test": "npx mocha api-tests.js --reporter mochawesome --reporter-options reportDir=reports,reportFilename=report.html"
+  "test": "npx mocha api-tests.js --reporter mochawesome"
 },
   "keywords": [],
   "author": "",
