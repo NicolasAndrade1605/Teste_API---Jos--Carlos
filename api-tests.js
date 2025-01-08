@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { expect } from 'chai';
+import { baseUrl, authToken, userId, login } from './config';
 
 const baseUrl = 'https://serverest.dev/';
 let authToken = '';
@@ -10,14 +11,7 @@ describe('Testes de API - ServeRest', function () {
 
     //Login para token JWT
     before(async function () {
-        const response = await axios.post(`${baseUrl}login`, {
-            email: 'teste@teste.com',
-            password: '123senha'
-        });
-        authToken = response.data.authorization;
-        expect(response.status).to.equal(200);
-        expect(authToken).to.be.a('string');
-        console.log('Token JWT obtido:', authToken);
+        await login();
     });
 
     // 1. Lista de Usuários
